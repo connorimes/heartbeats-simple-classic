@@ -51,7 +51,7 @@ int hbsc_init(hbsc_ctx* hb, uint64_t window_size, const char* log_name) {
   hb->log_fd = 0;
   if (log_name != NULL) {
     // open log file
-    hb->log_fd = open(log_name, O_CREAT | O_RDWR);
+    hb->log_fd = open(log_name, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
     if (hb->log_fd < 0) {
       free(hb->window_buffer);
       return -1;
