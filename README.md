@@ -6,7 +6,7 @@ Provides a classic Heartbeats style interface to [heartbeats-simple](https://git
 
 The `pkg-config` utility is required during build to locate some of these dependencies.
 
-* OpenMP (tested with [libgomp](https://gcc.gnu.org/projects/gomp/) 5.3.1)
+* OpenMP (e.g. [libgomp](https://gcc.gnu.org/projects/gomp/) or [libomp](http://openmp.llvm.org/))
 * [heartbeats-simple >= 0.3.0](https://github.com/libheartbeats/heartbeats-simple)
 * [energymon-default >= 0.2.0](https://github.com/energymon/energymon)
 
@@ -74,3 +74,10 @@ The following code snippet is an example of standard heartbeat usage.
 
 Note the starter heartbeat before work actually begins - if it is not issued, the first record will be lost.
 This is used rather than setting the start values in the init function so that delays between heartbeat initialization and starting work do not impact the timing results.
+
+## Project Source
+
+Find this and related project sources at the [libheartbeats organization on GitHub](https://github.com/libheartbeats).  
+This project originates at: https://github.com/libheartbeats/heartbeats-simple-classic
+
+Bug reports and pull requests for bug fixes and enhancements are welcome.
