@@ -49,6 +49,15 @@ typedef struct hbsc_acc_pow_ctx {
 
 /*
  * Initialize the heartbeat and any dependent data.
+ *
+ * @param hb
+ *   Not NULL
+ * @param window_size
+ *   Must be > 0
+ * @param log_name
+ *   NULL if logging is not desired
+ *
+ * @return 0 on success, -1 on failure
  */
 int hbsc_init(hbsc_ctx* hb, uint64_t window_size, const char* log_name);
 int hbsc_acc_init(hbsc_acc_ctx* hb, uint64_t window_size, const char* log_name);
@@ -57,14 +66,27 @@ int hbsc_acc_pow_init(hbsc_acc_pow_ctx* hb, uint64_t window_size, const char* lo
 
 /*
  * Issue a heartbeat.
+ *
+ * @param hb
+ *   Not NULL
+ * @param user_tag
+ * @param work
+ * @param accuracy
+ *
+ * @return 0 on success, -1 on failure
  */
-void hbsc(hbsc_ctx* hb, uint64_t user_tag, uint64_t work);
-void hbsc_acc(hbsc_acc_ctx* hb, uint64_t user_tag, uint64_t work, uint64_t accuracy);
-void hbsc_pow(hbsc_pow_ctx* hb, uint64_t user_tag, uint64_t work);
-void hbsc_acc_pow(hbsc_acc_pow_ctx* hb, uint64_t user_tag, uint64_t work, uint64_t accuracy);
+int hbsc(hbsc_ctx* hb, uint64_t user_tag, uint64_t work);
+int hbsc_acc(hbsc_acc_ctx* hb, uint64_t user_tag, uint64_t work, uint64_t accuracy);
+int hbsc_pow(hbsc_pow_ctx* hb, uint64_t user_tag, uint64_t work);
+int hbsc_acc_pow(hbsc_acc_pow_ctx* hb, uint64_t user_tag, uint64_t work, uint64_t accuracy);
 
 /*
  * Flush any log data and cleanup resources.
+ *
+ * @param hb
+ *   Not NULL
+ *
+ * @return 0 on success, -1 on failure
  */
 int hbsc_finish(hbsc_ctx* hb);
 int hbsc_acc_finish(hbsc_acc_ctx* hb);
@@ -73,6 +95,11 @@ int hbsc_acc_pow_finish(hbsc_acc_pow_ctx* hb);
 
 /*
  * Utility function to get the underlying heartbeat struct.
+ *
+ * @param hb
+ *   Not NULL
+ *
+ * @return context on success, NULL if hb param is NULL
  */
 heartbeat_context* hbsc_get_hb(hbsc_ctx* hb);
 heartbeat_acc_context* hbsc_acc_get_hb(hbsc_acc_ctx* hb);

@@ -17,7 +17,7 @@ void test_hbsc() {
   assert(hbsc_get_hb(&hb));
   uint64_t i;
   for (i = 0; i < ITERATIONS; i++) {
-    hbsc(&hb, i, WORK);
+    assert(hbsc(&hb, i, WORK) == 0);
   }
   assert(hbsc_finish(&hb) == 0);
 }
@@ -28,7 +28,7 @@ void test_hbsc_acc() {
   assert(hbsc_acc_get_hb(&hb));
   uint64_t i;
   for (i = 0; i < ITERATIONS; i++) {
-    hbsc_acc(&hb, i, WORK, ACCURACY);
+    assert(hbsc_acc(&hb, i, WORK, ACCURACY) == 0);
   }
   assert(hbsc_acc_finish(&hb) == 0);
 }
@@ -39,7 +39,7 @@ void test_hbsc_pow() {
   assert(hbsc_pow_get_hb(&hb));
   uint64_t i;
   for (i = 0; i < ITERATIONS; i++) {
-    hbsc_pow(&hb, i, WORK);
+    assert(hbsc_pow(&hb, i, WORK) == 0);
   }
   assert(hbsc_pow_finish(&hb) == 0);
 }
@@ -50,7 +50,7 @@ void test_hbsc_acc_pow() {
   assert(hbsc_acc_pow_get_hb(&hb));
   uint64_t i;
   for (i = 0; i < ITERATIONS; i++) {
-    hbsc_acc_pow(&hb, i, WORK, ACCURACY);
+    assert(hbsc_acc_pow(&hb, i, WORK, ACCURACY) == 0);
   }
   assert(hbsc_acc_pow_finish(&hb) == 0);
 }

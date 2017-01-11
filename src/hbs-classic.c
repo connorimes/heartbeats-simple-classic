@@ -106,22 +106,26 @@ int hbsc_init(hbsc_ctx* hb, uint64_t window_size, const char* log_name) {
  * Heartbeat
  */
 #if defined(HEARTBEAT_MODE_ACC)
-void hbsc_acc(hbsc_acc_ctx* hb, uint64_t user_tag, uint64_t work, uint64_t accuracy) {
+int hbsc_acc(hbsc_acc_ctx* hb, uint64_t user_tag, uint64_t work, uint64_t accuracy) {
 #elif defined(HEARTBEAT_MODE_POW)
-void hbsc_pow(hbsc_pow_ctx* hb, uint64_t user_tag, uint64_t work) {
+int hbsc_pow(hbsc_pow_ctx* hb, uint64_t user_tag, uint64_t work) {
 #elif defined(HEARTBEAT_MODE_ACC_POW)
-void hbsc_acc_pow(hbsc_acc_pow_ctx* hb, uint64_t user_tag, uint64_t work, uint64_t accuracy) {
+int hbsc_acc_pow(hbsc_acc_pow_ctx* hb, uint64_t user_tag, uint64_t work, uint64_t accuracy) {
 #else
-void hbsc(hbsc_ctx* hb, uint64_t user_tag, uint64_t work) {
+int hbsc(hbsc_ctx* hb, uint64_t user_tag, uint64_t work) {
 #endif
   if (hb == NULL) {
     errno = EINVAL;
-    return;
+    return -1;
   }
   // start values are last hb's end values
 #if defined(HEARTBEAT_MODE_POW) || defined(HEARTBEAT_MODE_ACC_POW)
   const uint64_t start_energy = hb->start_energy;
+  errno = 0;
   hb->start_energy = hb->em.fread(&hb->em);
+  if (hb->start_energy == 0 && errno) {
+    return -1;
+  }
 #endif
   const uint64_t start_time = hb->start_time;
   hb->start_time = get_time_ns();
@@ -137,6 +141,7 @@ void hbsc(hbsc_ctx* hb, uint64_t user_tag, uint64_t work) {
     heartbeat(&hb->hb, user_tag, work, start_time, hb->start_time);
 #endif
   }
+  return 0;
 }
 
 /**
