@@ -66,9 +66,8 @@ set(PKG_CONFIG_CFLAGS "-I\${includedir} ${OpenMP_C_FLAGS}")
 
 set(PKG_CONFIG_NAME "heartbeats-simple-classic")
 set(PKG_CONFIG_DESCRIPTION "A classic Heartbeats style interface to heartbeats-simple")
-set(PKG_CONFIG_REQUIRES_PRIVATE "heartbeats-simple >= 0.3.0, energymon-default >= 0.2.0")
+set(PKG_CONFIG_REQUIRES "heartbeats-simple >= 0.3.0, energymon-default >= 0.2.0")
 set(PKG_CONFIG_LIBS "-L\${libdir} -lheartbeats-simple-classic")
-set(PKG_CONFIG_LIBS_PRIVATE "")
 
 configure_file(
   ${CMAKE_CURRENT_SOURCE_DIR}/pkgconfig.in
