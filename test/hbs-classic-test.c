@@ -1,7 +1,7 @@
 // force assertions
 #undef NDEBUG
 #include <assert.h>
-#include <stdint.h>
+#include <inttypes.h>
 #include <stdio.h>
 #include "heartbeats-simple-classic.h"
 

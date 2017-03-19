@@ -7,8 +7,8 @@
 #include <energymon-default.h>
 #include <errno.h>
 #include <fcntl.h>
+#include <inttypes.h>
 #include <omp.h>
-#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>

@@ -13,7 +13,7 @@ extern "C" {
 
 #include <energymon.h>
 #include <heartbeats-simple.h>
-#include <stdint.h>
+#include <inttypes.h>
 
 typedef struct hbsc_ctx {
   heartbeat_context hb;
