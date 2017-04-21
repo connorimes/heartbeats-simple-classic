@@ -12,6 +12,10 @@ addons:
 
 language: c
 
+compiler:
+  - gcc
+  - clang
+
 install:
   # heartbeats-simple dependency
   - wget https://github.com/libheartbeats/heartbeats-simple/archive/master.zip
@@ -40,5 +44,5 @@ script:
   - mkdir _build
   - cd _build
   - PKG_CONFIG_PATH="../heartbeats-simple-master/_build/_install/lib/pkgconfig:../energymon-master/_build/_install/lib/pkgconfig" cmake ..
-  - make
-  - make test
+  - cmake --build .
+  - ctest --verbose

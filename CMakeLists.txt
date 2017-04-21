@@ -13,7 +13,7 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(HBS REQUIRED heartbeats-simple)
 pkg_check_modules(ENERGYMON REQUIRED energymon-default)
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS} ${HBS_CFLAGS_OTHER} ${ENERGYMON_CFLAGS_OTHER} -Wall")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS} ${HBS_CFLAGS_OTHER} ${ENERGYMON_CFLAGS_OTHER} -Wall -std=c99")
 
 include_directories(${PROJECT_SOURCE_DIR}/inc ${HBS_INCLUDE_DIRS} ${ENERGYMON_INCLUDE_DIRS})
 
