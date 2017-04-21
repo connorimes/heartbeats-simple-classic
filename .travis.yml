@@ -14,7 +14,8 @@ language: c
 
 compiler:
   - gcc
-  - clang
+  # No clang with OpenMP support until Ubuntu 16.04 (via libomp-dev)
+  # - clang
 
 install:
   # heartbeats-simple dependency
@@ -25,8 +26,7 @@ install:
   - mkdir _build
   - cd _build
   - cmake -DCMAKE_INSTALL_PREFIX=_install ..
-  - make
-  - make install
+  - cmake --build . --target install
   - cd ../..
   # energymon dependency (use default dummy implementation)
   - wget https://github.com/energymon/energymon/archive/master.zip
@@ -36,8 +36,7 @@ install:
   - mkdir _build
   - cd _build
   - cmake -DCMAKE_INSTALL_PREFIX=_install ..
-  - make
-  - make install
+  - cmake --build . --target install
   - cd ../..
 
 script:
