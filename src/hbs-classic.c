@@ -16,7 +16,7 @@
 #include <unistd.h>
 #include "heartbeats-simple-classic.h"
 
-static uint64_t get_time_ns() {
+static uint64_t get_time_ns(void) {
   static const uint64_t ONE_BILLION = 1000000000;
   return omp_get_wtime() * ONE_BILLION;
 }
