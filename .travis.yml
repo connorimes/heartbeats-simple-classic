@@ -1,6 +1,3 @@
-dist: trusty
-sudo: false
-
 os:
   - linux
   # Disabled due to lack of OpenMP support in Travis' OSX environment
@@ -19,7 +16,7 @@ install:
   - wget https://github.com/libheartbeats/heartbeats-simple/archive/master.zip
   - unzip master.zip
   - rm master.zip
-  - mkdir heartbeats-simple-master/_build
+  - mkdir -p heartbeats-simple-master/_build
   - cd heartbeats-simple-master/_build
   - cmake -DCMAKE_INSTALL_PREFIX=../../_dep_install ..
   - cmake --build . --target install
@@ -28,7 +25,7 @@ install:
   - wget https://github.com/energymon/energymon/archive/master.zip
   - unzip master.zip
   - rm master.zip
-  - mkdir energymon-master/_build
+  - mkdir -p energymon-master/_build
   - cd energymon-master/_build
   - cmake -DCMAKE_INSTALL_PREFIX=../../_dep_install ..
   - cmake --build . --target install
