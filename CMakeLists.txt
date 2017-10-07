@@ -1,7 +1,10 @@
 cmake_minimum_required(VERSION 2.8.9)
 
 project(heartbeats-simple-classic)
-set(PROJECT_VERSION 0.1.0)
+set(VERSION_MAJOR 0)
+set(VERSION_MINOR 1)
+set(VERSION_PATCH 0)
+set(PROJECT_VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH})
 
 
 # Dependencies
@@ -42,6 +45,10 @@ add_library(heartbeats-simple-classic $<TARGET_OBJECTS:hbsc>
                                       $<TARGET_OBJECTS:hbsc-acc-pow>)
 target_link_libraries(heartbeats-simple-classic -L${HBS_LIBDIR} ${HBS_LIBRARIES}
                                                 -L${ENERGYMON_LIBDIR} ${ENERGYMON_LIBRARIES})
+if(BUILD_SHARED_LIBS)
+  set_target_properties(heartbeats-simple-classic PROPERTIES VERSION ${PROJECT_VERSION}
+                                                             SOVERSION ${VERSION_MAJOR})
+endif()
 
 
 # Tests
