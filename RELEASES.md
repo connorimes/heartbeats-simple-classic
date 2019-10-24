@@ -1,6 +1,8 @@
 # Release Notes
 
 ## [Unreleased]
+### Fixed
+ * Link against static library dependencies when building static library
 
 
 ## [v0.1.1] - 2017-11-13

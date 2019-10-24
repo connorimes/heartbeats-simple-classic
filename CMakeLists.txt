@@ -50,11 +50,14 @@ add_library(heartbeats-simple-classic $<TARGET_OBJECTS:hbsc>
                                       $<TARGET_OBJECTS:hbsc-acc>
                                       $<TARGET_OBJECTS:hbsc-pow>
                                       $<TARGET_OBJECTS:hbsc-acc-pow>)
-target_link_libraries(heartbeats-simple-classic -L${HBS_LIBDIR} ${HBS_LIBRARIES}
-                                                -L${ENERGYMON_LIBDIR} ${ENERGYMON_LIBRARIES})
 if(BUILD_SHARED_LIBS)
+  target_link_libraries(heartbeats-simple-classic -L${HBS_LIBDIR} ${HBS_LIBRARIES}
+                                                  -L${ENERGYMON_LIBDIR} ${ENERGYMON_LIBRARIES})
   set_target_properties(heartbeats-simple-classic PROPERTIES VERSION ${PROJECT_VERSION}
                                                              SOVERSION ${VERSION_MAJOR})
+else()
+  target_link_libraries(heartbeats-simple-classic -L${HBS_LIBDIR} ${HBS_STATIC_LIBRARIES}
+                                                  -L${ENERGYMON_LIBDIR} ${ENERGYMON_STATIC_LIBRARIES})
 endif()
 
 
